@@ -15,8 +15,20 @@
         <a href="/perfumes.html">Perfumes</a>
         <a href="/laboratorio.html">Herramientas</a>
     </div>
-
-    {{ content }}
+{% assign avisos_activos = site.data.avisos | where: "activo", true %}
+{% if avisos_activos.size > 0 %}
+<div class="marquesina-contenedor">
+  <div class="marquesina-texto">
+    {% for aviso in avisos_activos %}
+      <span>✨ {{ aviso.texto }}</span>
+    {% endfor %}
+    {% for aviso in avisos_activos %}
+      <span>✨ {{ aviso.texto }}</span>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+ {{ content }}
 
   <div class="footer-leaves" style="background-image: url('{{ '/image/hojas.jpeg' | relative_url }}');"></div>
 
