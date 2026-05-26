@@ -348,3 +348,73 @@ dt:target {
     padding: 7px 11px;
   }
 }
+
+/* ==========================================================================
+   MARQUESINA DE ANUNCIOS EN MOVIMIENTO
+   ========================================================================== */
+
+/* 1. El contenedor: oculta lo que se sale de la pantalla y da el fondo */
+.marquesina-contenedor {
+  width: 100%;
+  overflow: hidden;
+  background: rgba(212, 175, 55, 0.05); /* Un sutil velo con matiz dorado */
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15); /* Línea dorada fina */
+  padding: 10px 0;
+  white-space: nowrap; /* Obliga al texto a mantenerse en una sola línea */
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* 2. La tira de texto que se va a desplazar */
+.marquesina-texto {
+  display: inline-block;
+  padding-left: 100%; /* Empieza el recorrido desde la derecha, fuera de la pantalla */
+  animation: desplazar-anuncio 25s linear infinite; /* 25 segundos por vuelta. Si va muy rápido, sube a 30s */
+}
+
+/* Estilo de cada anuncio individual dentro de la tira */
+.marquesina-texto span {
+  color: #ebdcb9; /* El tono dorado/arena claro de tus letras */
+  font-size: 0.88rem;
+  font-style: italic; /* Toque de "nota del autor" */
+  padding-right: 60px; /* Espacio de separación generoso entre un anuncio y otro */
+  display: inline-block;
+}
+
+/* 3. La animación que genera el bucle infinito y fluido */
+@keyframes desplazar-anuncio {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0); /* Se desplaza la mitad exacta para enganchar el bucle sin saltos */
+  }
+}
+
+/* Si el usuario mantiene el dedo pulsado en el móvil o el ratón encima, el texto se frena */
+.marquesina-contenedor:hover .marquesina-texto,
+.marquesina-contenedor:active .marquesina-texto {
+  animation-play-state: paused;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
