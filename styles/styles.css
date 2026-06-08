@@ -174,6 +174,23 @@ strong {
   color: var(--text-soft);
   font-weight: 600;
 }
+
+/* ============================================
+   ENLACES
+   ============================================ */
+
+/* Enlaces dorados en el texto */
+a[style*="color:#c49b3f"],
+a[style*="color: #c49b3f"] {
+  transition: opacity var(--transition);
+}
+
+a[style*="color:#c49b3f"]:hover,
+a[style*="color: #c49b3f"]:hover {
+  opacity: 0.75;
+}
+
+/* Enlace de glosario */
 .glosario-link {
   color: var(--gold-dark);
   text-decoration: none;
@@ -185,6 +202,15 @@ strong {
   color: var(--gold);
   border-bottom-color: var(--gold);
 }
+
+/* Ancla de glosario activa */
+dt:target {
+  color: #e6c76b;
+  font-weight: 700;
+  border-left: 3px solid #c9a84c;
+  padding-left: 8px;
+}
+
 /* ============================================
    CLASES DE CONTENIDO
    ============================================ */
@@ -208,12 +234,6 @@ strong {
   line-height: 1.7;
 }
 
-dt:target {
-  color: #e6c76b;
-  font-weight: 700;
-  border-left: 3px solid #c9a84c;
-  padding-left: 8px;
-}
 /* Puente narrativo / transición */
 .bridge {
   font-style: italic;
@@ -263,16 +283,67 @@ dt:target {
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
   display: block;
 }
-.glosario-link {
-  color: var(--gold-dark);
-  text-decoration: none;
-  border-bottom: 1px solid var(--gold-dark);
-  transition: var(--transition);
+
+/* ============================================
+   ÍNDICE INTERNO DE PÁGINA
+   ============================================ */
+
+.indice-interno {
+  margin: 0 0 40px;
 }
 
-.glosario-link:hover {
+.indice-interno p {
+  color: var(--gold-dark);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.indice-interno ul {
+  list-style: none;
+  padding: 0;
+}
+
+.indice-interno li {
+  margin-bottom: 0;
+  padding: 0;
+  background: none;
+  border-left: none;
+  border-radius: 0;
+  line-height: 2.6;
+}
+
+.indice-interno a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.indice-interno a:hover {
   color: var(--gold);
-  border-bottom-color: var(--gold);
+}
+
+/* ============================================
+   BOTÓN TELEGRAM
+   ============================================ */
+
+.btn-telegram {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  color: var(--bg);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 16px 36px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: var(--transition);
+  box-shadow: 0 4px 18px rgba(230, 199, 107, 0.25);
+}
+
+.btn-telegram:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(230, 199, 107, 0.35);
 }
 
 /* ============================================
@@ -340,6 +411,11 @@ dt:target {
     height: 130px;
     margin-top: 48px;
   }
+
+  .btn-telegram {
+    padding: 14px 24px;
+    font-size: 0.92rem;
+  }
 }
 
 @media (max-width: 380px) {
@@ -349,72 +425,41 @@ dt:target {
   }
 }
 
-/* ==========================================================================
+/* ============================================
    MARQUESINA DE ANUNCIOS EN MOVIMIENTO
-   ========================================================================== */
+   ============================================ */
 
-/* 1. El contenedor: oculta lo que se sale de la pantalla y da el fondo */
 .marquesina-contenedor {
   width: 100%;
   overflow: hidden;
-  background: rgba(212, 175, 55, 0.05); /* Un sutil velo con matiz dorado */
-  border-bottom: 1px solid rgba(212, 175, 55, 0.15); /* Línea dorada fina */
+  background: rgba(212, 175, 55, 0.05);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
   padding: 10px 0;
-  white-space: nowrap; /* Obliga al texto a mantenerse en una sola línea */
+  white-space: nowrap;
   position: relative;
   box-sizing: border-box;
 }
 
-/* 2. La tira de texto que se va a desplazar */
 .marquesina-texto {
   display: inline-block;
-  padding-left: 100%; /* Empieza el recorrido desde la derecha, fuera de la pantalla */
-  animation: desplazar-anuncio 25s linear infinite; /* 25 segundos por vuelta. Si va muy rápido, sube a 30s */
+  padding-left: 100%;
+  animation: desplazar-anuncio 25s linear infinite;
 }
 
-/* Estilo de cada anuncio individual dentro de la tira */
 .marquesina-texto span {
-  color: #ebdcb9; /* El tono dorado/arena claro de tus letras */
+  color: #ebdcb9;
   font-size: 0.88rem;
-  font-style: italic; /* Toque de "nota del autor" */
-  padding-right: 60px; /* Espacio de separación generoso entre un anuncio y otro */
+  font-style: italic;
+  padding-right: 60px;
   display: inline-block;
 }
 
-/* 3. La animación que genera el bucle infinito y fluido */
 @keyframes desplazar-anuncio {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0); /* Se desplaza la mitad exacta para enganchar el bucle sin saltos */
-  }
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
-/* Si el usuario mantiene el dedo pulsado en el móvil o el ratón encima, el texto se frena */
 .marquesina-contenedor:hover .marquesina-texto,
 .marquesina-contenedor:active .marquesina-texto {
   animation-play-state: paused;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
